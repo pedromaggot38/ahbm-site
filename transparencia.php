@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal da Transparência - AHB Maracaí</title>
     <link rel="icon" type="image/x-icon" href="/public/logo.svg">
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="./dist/style.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -42,8 +41,6 @@
             <nav class="hidden md:flex space-x-8">
                 <a href="/" class="text-gray-600 hover:text-red-600">Início</a>
                 <a href="/sobre" class="text-gray-600 hover:text-red-600">Sobre</a>
-                <!-- <a href="/noticias" class="text-gray-600 hover:text-red-600">Notícias</a>
-                <a href="/medicos" class="text-gray-600 hover:text-red-600">Médicos</a> -->
                 <a href="/servicos" class="text-gray-600 hover:text-red-600">Serviços</a>
                 <a href="/transparencia" class="text-red-600 font-medium">Transparência</a>
                 <a href="/contato" class="text-gray-600 hover:text-red-600">Contato</a>
@@ -55,8 +52,6 @@
         <div class="md:hidden hidden bg-white py-2 px-4 shadow-md" id="mobile-menu">
             <a href="/" class="block py-2 text-gray-600">Início</a>
             <a href="/sobre" class="block py-2 text-gray-600">Sobre</a>
-            <!-- <a href="/noticias" class="block py-2 text-gray-600">Notícias</a>
-            <a href="/medicos" class="block py-2 text-gray-600">Médicos</a> -->
             <a href="/servicos" class="block py-2 text-gray-600">Serviços</a>
             <a href="/transparencia" class="block py-2 text-red-600">Transparência</a>
             <a href="/contato" class="block py-2 text-gray-600">Contato</a>
@@ -105,20 +100,20 @@
                     $caminho_arquivo = $diretorio_institucional . $nome_arquivo;
                     if (file_exists($caminho_arquivo)):
                 ?>
-                    <div class="document-card bg-white p-6 rounded-lg shadow-md transition-shadow duration-300" data-aos="fade-up">
-                        <div class="flex items-start mb-4">
-                            <div class="bg-<?php echo $config['cor']; ?>-100 p-3 rounded-full mr-4">
-                                <i data-feather="<?php echo $config['icone']; ?>" class="text-<?php echo $config['cor']; ?>-600"></i>
+                        <div class="document-card bg-white p-6 rounded-lg shadow-md transition-shadow duration-300" data-aos="fade-up">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-<?php echo $config['cor']; ?>-100 p-3 rounded-full mr-4">
+                                    <i data-feather="<?php echo $config['icone']; ?>" class="text-<?php echo $config['cor']; ?>-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold"><?php echo $config['titulo']; ?></h4>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="text-lg font-semibold"><?php echo $config['titulo']; ?></h4>
-                            </div>
+                            <p class="text-gray-600 mb-4"><?php echo $config['descricao']; ?></p>
+                            <a href="<?php echo $caminho_arquivo; ?>" target="_blank" class="text-red-600 font-medium hover:underline flex items-center">
+                                <i data-feather="download" class="mr-2 w-4 h-4"></i> Baixar PDF
+                            </a>
                         </div>
-                        <p class="text-gray-600 mb-4"><?php echo $config['descricao']; ?></p>
-                        <a href="<?php echo $caminho_arquivo; ?>" target="_blank" class="text-red-600 font-medium hover:underline flex items-center">
-                            <i data-feather="download" class="mr-2 w-4 h-4"></i> Baixar PDF
-                        </a>
-                    </div>
                 <?php
                     endif;
                 endforeach;
@@ -126,6 +121,51 @@
             </div>
             <?php if (empty($arquivos_institucionais)): ?>
                 <p class="text-center text-gray-600 mt-6">Nenhum documento institucional encontrado.</p>
+            <?php endif; ?>
+        </section>
+
+        <section class="mb-16">
+            <?php
+            $diretorio_emendas = 'public/emendas/';
+            $arquivos_emendas = glob($diretorio_emendas . '*.pdf');
+            $emendas_config = [
+                'publicacao_emenda.pdf' => [
+                    'titulo' => 'Publicação de Emenda',
+                    'descricao' => 'Documento de publicação de emenda parlamentar.',
+                    'icone' => 'file-plus',
+                    'cor' => 'blue'
+                ],
+                // Adicione outras emendas aqui, com o nome do arquivo => [configurações]
+            ];
+            ?>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Emendas</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <?php
+                foreach ($emendas_config as $nome_arquivo => $config):
+                    $caminho_arquivo = $diretorio_emendas . $nome_arquivo;
+                    if (file_exists($caminho_arquivo)):
+                ?>
+                        <div class="document-card bg-white p-6 rounded-lg shadow-md transition-shadow duration-300" data-aos="fade-up">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-<?php echo $config['cor']; ?>-100 p-3 rounded-full mr-4">
+                                    <i data-feather="<?php echo $config['icone']; ?>" class="text-<?php echo $config['cor']; ?>-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold"><?php echo $config['titulo']; ?></h4>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4"><?php echo $config['descricao']; ?></p>
+                            <a href="<?php echo $caminho_arquivo; ?>" target="_blank" class="text-red-600 font-medium hover:underline flex items-center">
+                                <i data-feather="download" class="mr-2 w-4 h-4"></i> Baixar PDF
+                            </a>
+                        </div>
+                <?php
+                    endif;
+                endforeach;
+                ?>
+            </div>
+            <?php if (empty($arquivos_emendas)): ?>
+                <p class="text-center text-gray-600 mt-6">Nenhuma emenda encontrada.</p>
             <?php endif; ?>
         </section>
 
@@ -252,8 +292,6 @@
                     <h3 class="text-xl font-bold mb-4">Links Rápidos</h3>
                     <ul class="space-y-2">
                         <li><a href="/sobre" class="text-gray-300 hover:text-white">Sobre Nós</a></li>
-                        <!-- <li><a href="/noticias" class="text-gray-300 hover:text-white">Notícias</a></li>
-                        <li><a href="/medicos" class="text-gray-300 hover:text-white">Médicos</a></li> -->
                         <li><a href="/servicos" class="text-gray-300 hover:text-white">Serviços</a></li>
                         <li><a href="/transparencia" class="text-gray-300 hover:text-white">Portal da Transparência</a></li>
                         <li><a href="/contato" class="text-gray-300 hover:text-white">Contato</a></li>
