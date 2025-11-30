@@ -124,7 +124,15 @@
         <section class="mb-16">
             <?php
             $diretorio_emendas = 'public/emendas/';
-            $arquivos_emendas = glob($diretorio_emendas . '*.pdf');
+
+            $arquivos_pdf = glob($diretorio_emendas . '*.pdf');
+            $arquivos_xlsx = glob($diretorio_emendas . '*.xlsx');
+
+            $arquivos_emendas = array_merge(
+                $arquivos_pdf ? $arquivos_pdf : [], 
+                $arquivos_xlsx ? $arquivos_xlsx : []
+            );
+
             $emendas_config = [
                 'publicacao_emenda.pdf' => [
                     'titulo' => 'Publicação de Emenda',
@@ -132,7 +140,13 @@
                     'icone' => 'file-plus',
                     'cor' => 'blue'
                 ],
-                // Adicione outras emendas aqui, com o nome do arquivo => [configurações]
+
+                'emendas-por-documento.xlsx' => [
+                    'titulo' => 'Planilha de Emendas por Documento',
+                    'descricao' => 'Relatório detalhado das emendas recebidas.',
+                    'icone' => 'trello',
+                    'cor' => 'green'
+                ],
             ];
             ?>
             <h3 class="text-2xl font-bold text-gray-800 mb-6">Emendas</h3>
@@ -153,7 +167,7 @@
                             </div>
                             <p class="text-gray-600 mb-4"><?php echo $config['descricao']; ?></p>
                             <a href="<?php echo $caminho_arquivo; ?>" target="_blank" class="text-red-600 font-medium hover:underline flex items-center">
-                                <i data-feather="download" class="mr-2 w-4 h-4"></i> Baixar PDF
+                                <i data-feather="download" class="mr-2 w-4 h-4"></i> Baixar Arquivo
                             </a>
                         </div>
                 <?php
@@ -161,6 +175,7 @@
                 endforeach;
                 ?>
             </div>
+            
             <?php if (empty($arquivos_emendas)): ?>
                 <p class="text-center text-gray-600 mt-6">Nenhuma emenda encontrada.</p>
             <?php endif; ?>
