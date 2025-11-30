@@ -9,9 +9,6 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="./dist/style.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <style>
         html, body {
             width: 100%;
@@ -207,6 +204,8 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         const medicalConsultations = [
             {
@@ -271,8 +270,10 @@
         function renderServices() {
             const consultationsContainer = document.getElementById('consultations-container');
             const examsContainer = document.getElementById('exams-container');
+            
             const createSectionHTML = (section) => {
-                const imagePath = `/public${section.image}`;
+                const imagePath = `public${section.image}`; 
+                
                 const reverseClass = section.reverse ? 'reverse' : '';
                 return `
                 <div class="service-card ${reverseClass}" data-aos="fade-up">
@@ -283,41 +284,38 @@
                         </div>
                     </div>
                     <div class="service-image-wrapper">
-                        <img alt="${section.title}" src="${imagePath}" />
+                        <img alt="${section.title}" src="${imagePath}" loading="lazy" />
                     </div>
                 </div>
                 `;
             };
-            consultationsContainer.innerHTML = medicalConsultations.map(createSectionHTML).join('');
-            examsContainer.innerHTML = medicalExams.map(createSectionHTML).join('');
+            
+            if (consultationsContainer) {
+                consultationsContainer.innerHTML = medicalConsultations.map(createSectionHTML).join('');
+            }
+            if (examsContainer) {
+                examsContainer.innerHTML = medicalExams.map(createSectionHTML).join('');
+            }
         }
 
         // --- INICIALIZAÇÃO DA PÁGINA ---
         document.addEventListener('DOMContentLoaded', function () {
+            feather.replace();
+
+            const menuToggle = document.getElementById('menu-toggle');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function () {
+                    document.getElementById('mobile-menu').classList.toggle('hidden');
+                });
+            }
+
+            renderServices();
+
             AOS.init({
                 duration: 800,
                 easing: 'ease-in-out',
                 once: true
             });
-            feather.replace();
-
-            document.getElementById('menu-toggle').addEventListener('click', function () {
-                document.getElementById('mobile-menu').classList.toggle('hidden');
-            });
-
-            function highlightActiveLink() {
-                const currentPath = window.location.pathname;
-                const navLinks = document.querySelectorAll('header nav a, #mobile-menu a');
-                navLinks.forEach(link => {
-                    const linkPath = new URL(link.href).pathname;
-                    if (currentPath === linkPath) {
-                        link.classList.remove('text-gray-600', 'hover:text-red-600');
-                        link.classList.add('text-red-600', 'font-medium');
-                    }
-                });
-            }
-            renderServices();
-            highlightActiveLink();
         });
     </script>
 </body>
