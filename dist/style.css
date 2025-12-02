@@ -1346,29 +1346,23 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-/* --- PACOTE DE CORES EXTRAS (Manual) --- */
+/* --- Manual --- */
 
-/* Roxo (Purple) - Bom para convênios ou contratos */
 .bg-purple-100 { background-color: #f3e8ff; }
 .text-purple-600 { color: #9333ea; }
 
-/* Laranja (Orange) - Bom para alertas ou emendas especiais */
 .bg-orange-100 { background-color: #ffedd5; }
 .text-orange-600 { color: #ea580c; }
 
-/* Amarelo (Yellow) - Bom para avisos ou documentos pendentes */
 .bg-yellow-100 { background-color: #fef9c3; }
 .text-yellow-600 { color: #ca8a04; }
 
-/* Rosa (Pink) - Para destaque ou campanhas específicas (ex: Outubro Rosa) */
 .bg-pink-100 { background-color: #fce7f3; }
 .text-pink-600 { color: #db2777; }
 
-/* Índigo (Indigo) - Uma alternativa mais moderna ao azul padrão */
 .bg-indigo-100 { background-color: #e0e7ff; }
 .text-indigo-600 { color: #4f46e5; }
 
-/* Verde-Água (Teal) - Uma alternativa fresca ao verde padrão */
 .bg-teal-100 { background-color: #ccfbf1; }
 .text-teal-600 { color: #0d9488; }
 
@@ -1523,6 +1517,17 @@ video {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+  .md\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .md\:flex-row {
     flex-direction: row;
   }
@@ -1553,6 +1558,10 @@ video {
 }
 
 @media (min-width: 1024px) {
+  .lg\:w-full {
+    width: 100%;
+  }
+  
   .lg\:mt-0 {
     margin-top: 0px;
   }
@@ -1571,6 +1580,10 @@ video {
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:col-span-1 {
+    grid-column: span 1 / span 1;
   }
 
   .lg\:flex-row {

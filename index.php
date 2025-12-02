@@ -97,7 +97,7 @@
             </div>
             
             <div class="lg:w-1/3" data-aos="fade-left">
-                <div class="bg-white p-6 rounded-lg shadow-md mt-8" data-aos="fade-left" data-aos-delay="100">
+                <div class="bg-white p-6 rounded-lg shadow-md mt-6" data-aos="fade-left" data-aos-delay="100">
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Horário de Funcionamento</h3>
                     <ul class="space-y-2">
                         
@@ -124,7 +124,7 @@
             </div>
         </div>
 
-        <section class="py-16 mt-8 bg-white rounded-lg shadow-md" data-aos="fade-up">
+        <section class="py-16 mt-6" data-aos="fade-up">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-gray-800">Outros Serviços</h2>
@@ -145,7 +145,7 @@
                         <h3 class="text-xl font-semibold mb-2">Exames Anatomopatológicos</h3>
                         <p class="text-gray-600">Serviços terceirizados com patologistas para análise detalhada de amostras.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300 md:col-span-2 md:w-1/2 md:mx-auto lg:col-span-1 lg:w-full">
                         <div class="flex-shrink-0 bg-red-100 p-4 rounded-full mb-4">
                             <i data-feather="activity" class="text-red-600" width="32" height="32"></i>
                         </div>
