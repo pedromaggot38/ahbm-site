@@ -72,7 +72,6 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="doctors-container">
-                <!-- Doctors will be loaded from API -->
                 <div class="text-center py-8 col-span-3">
                     <i data-feather="loader" class="animate-spin mx-auto text-gray-400" width="24" height="24"></i>
                 </div>
@@ -85,7 +84,7 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">AHBM Hospital</h3>
-                     <a 
+                    <a 
                         href="https://www.google.com/maps?q=Av.+José+Bonifácio,+382+-+Centro,+Maracaí+-+SP,+19840-000" 
                         target="_blank" 
                         rel="noopener noreferrer" 
@@ -95,7 +94,7 @@
                         <span>
                             Av. José Bonifácio, 382 - Centro<br>
                             Maracaí - SP<br>
-                            CEP: 19840-000
+                            CEP: 19840-037
                         </span>
                     </a>
                 </div>
@@ -107,7 +106,7 @@
                         </a>
                     </p>
                     <p class="text-gray-300 mb-2">
-                         <a href="mailto:provedoria@ahbm.com.br" class="flex items-center hover:underline">
+                        <a href="mailto:provedoria@ahbm.com.br" class="flex items-center hover:underline">
                             <i data-feather="mail" class="mr-2 h-4 w-4"></i> provedoria@ahbm.com.br
                         </a>
                     </p>
@@ -119,8 +118,6 @@
                     <h3 class="text-xl font-bold mb-4">Links Rápidos</h3>
                     <ul class="space-y-2">
                         <li><a href="/sobre" class="text-gray-300 hover:text-white">Sobre Nós</a></li>
-                        <li><a href="/noticias" class="text-gray-300 hover:text-white">Notícias</a></li>
-                        <li><a href="/medicos" class="text-gray-300 hover:text-white">Médicos</a></li>
                         <li><a href="/servicos" class="text-gray-300 hover:text-white">Serviços</a></li>
                         <li><a href="/transparencia" class="text-gray-300 hover:text-white">Portal da Transparência</a></li>
                         <li><a href="/contato" class="text-gray-300 hover:text-white">Contato</a></li>
@@ -136,34 +133,31 @@
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p>© <?php echo date("Y"); ?> AHBM Hospital de Maracaí. Todos os direitos reservados.</p>
+                <p class="text-sm mt-2">Desenvolvido por <a href="https://www.linkedin.com/in/pedrosanches38/" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white hover:underline">Pedro Sanches</a></p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         });
 
-        // Fetch doctors from API
         async function fetchDoctors() {
             const doctorsContainer = document.getElementById('doctors-container');
             try {
-                const response = await fetch('https://tcc-v2-peach.vercel.app/api/v1/public/doctors');
+                const response = await fetch('/api/v1/public/doctors');
                 const result = await response.json();
                 
-                // Assumes the API returns data in the format { data: { data: [...] } }
                 const doctors = result.data.data;
                 
-                doctorsContainer.innerHTML = ''; // Clear the loader
+                doctorsContainer.innerHTML = '';
                 
                 doctors.forEach(doctor => {
                     const doctorCard = document.createElement('div');
                     doctorCard.className = 'doctor-card bg-white rounded-lg shadow-md overflow-hidden transition';
                     
-                    // Note: The photo logic and data-specialty have been removed.
                     doctorCard.innerHTML = `
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-semibold text-gray-800">${doctor.name}</h3>
@@ -188,7 +182,6 @@
             }
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({
                 duration: 800,

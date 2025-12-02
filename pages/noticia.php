@@ -2,14 +2,11 @@
 $artigo = null;
 $erro = null;
 
-// 1. Pega o slug da URL de forma segura
 if (isset($_GET['slug']) && !empty($_GET['slug'])) {
     $slug = $_GET['slug'];
 
-    // 2. Monta a URL da API
-    $apiUrl = "https://tcc-v2-seven.vercel.app/api/v1/public/articles/" . urlencode($slug);
+    $apiUrl = "/api/v1/public/articles/" . urlencode($slug);
 
-    // 3. Faz a requisição para a API usando cURL (mais robusto)
     $ch = curl_init(); 
 
     curl_setopt($ch, CURLOPT_URL, $apiUrl); 
@@ -40,7 +37,6 @@ if (isset($_GET['slug']) && !empty($_GET['slug'])) {
 }
 
 if ($artigo) {
-    // Adicionando a tag <img> para permitir imagens no conteúdo do artigo
     $tagsPermitidas = '<p><h1><h2><h3><h4><h5><h6><strong><b><i><em><u><ul><ol><li><a><blockquote><span><br><img>';
     $conteudoSeguro = strip_tags($artigo->content, $tagsPermitidas);
 }
@@ -57,9 +53,6 @@ if ($artigo) {
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="/dist/style.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <style>
         html, body {
             width: 100%;
@@ -74,28 +67,25 @@ if ($artigo) {
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
-        /* Estilos para as imagens dentro do conteúdo do artigo */
         .article-content img {
             max-width: 100%;
-            width: auto; /* Permite que a largura se ajuste à altura máxima */
+            width: auto;
             height: auto; 
-            max-height: 24rem; /* Define a altura máxima para 96 (equivalente a 24rem) */
-            object-fit: contain; /* Ajusta a imagem sem cortá-la */
-            border-radius: 0.5rem; /* rounded-lg */
+            max-height: 24rem;
+            object-fit: contain;
+            border-radius: 0.5rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
-            display: block; /* Garante que ela se comporte como um bloco para margin auto funcionar */
+            display: block;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Ajustes adicionais para o plugin prose, se necessário */
         .prose img {
-            /* O plugin prose já adiciona alguns estilos, mas podemos sobrescrever */
-            max-height: 24rem; /* Sobrescreve para garantir */
+            max-height: 24rem;
             object-fit: contain;
-            width: auto; /* Garante que a largura se ajuste */
+            width: auto;
         }
     </style>
 </head>
@@ -197,7 +187,7 @@ if ($artigo) {
                         <span>
                             Av. José Bonifácio, 382 - Centro<br>
                             Maracaí - SP<br>
-                            CEP: 19840-000
+                            CEP: 19840-037
                         </span>
                     </a>
                 </div>
@@ -221,8 +211,6 @@ if ($artigo) {
                     <h3 class="text-xl font-bold mb-4">Links Rápidos</h3>
                     <ul class="space-y-2">
                         <li><a href="/sobre" class="text-gray-300 hover:text-white">Sobre Nós</a></li>
-                        <!-- <li><a href="/noticias" class="text-gray-300 hover:text-white">Notícias</a></li>
-                        <li><a href="/medicos" class="text-gray-300 hover:text-white">Médicos</a></li> -->
                         <li><a href="/servicos" class="text-gray-300 hover:text-white">Serviços</a></li>
                         <li><a href="/transparencia" class="text-gray-300 hover:text-white">Portal da Transparência</a></li>
                         <li><a href="/contato" class="text-gray-300 hover:text-white">Contato</a></li>
@@ -243,17 +231,17 @@ if ($artigo) {
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script>
-        // Mobile menu toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         });
 
-        // Função para buscar notícias recentes (para a barra lateral)
         async function fetchRecentNews() {
             const newsContainer = document.getElementById('news-container');
-            const apiUrl = 'https://tcc-v2-seven.vercel.app/api/v1/public/articles?limit=5';
+            const apiUrl = '/api/v1/public/articles?limit=5';
             
             try {
                 const response = await fetch(apiUrl);

@@ -6,9 +6,6 @@
     <title>Notícias - AHB Maracaí</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <style>
         html, body {
             width: 100%;
@@ -69,14 +66,10 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <div class="container mx-auto px-4 py-12 flex flex-col lg:flex-row">
-        <!-- News Content -->
         <main class="lg:w-2/3 lg:pr-8">
             <div class="mb-8">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">Últimas Notícias</h2>
-                
-                <!-- Featured News -->
                 <div class="mb-12" data-aos="fade-up">
                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
                         <img src="http://static.photos/medical/1024x576/7" alt="Destaque" class="w-full h-64 object-cover">
@@ -95,9 +88,7 @@
                     </div>
                 </div>
 
-                <!-- News Grid -->
                 <div class="grid md:grid-cols-2 gap-6" id="news-grid">
-                    <!-- News cards will be loaded here from API -->
                 </div>
 
                 <!-- Pagination -->
@@ -116,45 +107,6 @@
                 </div>
             </div>
         </main>
-
-        <!-- Sidebar -->
-        <aside class="lg:w-1/3 mt-8 lg:mt-0">
-            <div class="bg-white p-6 rounded-lg shadow-md mb-6" data-aos="fade-left">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Categorias</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="flex justify-between text-gray-600 hover:text-red-600">
-                        <span>Eventos</span>
-                        <span class="bg-gray-100 px-2 rounded-full text-sm">12</span>
-                    </a></li>
-                    <li><a href="#" class="flex justify-between text-gray-600 hover:text-red-600">
-                        <span>Atualizações</span>
-                        <span class="bg-gray-100 px-2 rounded-full text-sm">8</span>
-                    </a></li>
-                    <li><a href="#" class="flex justify-between text-gray-600 hover:text-red-600">
-                        <span>Campanhas</span>
-                        <span class="bg-gray-100 px-2 rounded-full text-sm">5</span>
-                    </a></li>
-                    <li><a href="#" class="flex justify-between text-gray-600 hover:text-red-600">
-                        <span>Novidades</span>
-                        <span class="bg-gray-100 px-2 rounded-full text-sm">15</span>
-                    </a></li>
-                    <li><a href="#" class="flex justify-between text-gray-600 hover:text-red-600">
-                        <span>Serviços</span>
-                        <span class="bg-gray-100 px-2 rounded-full text-sm">7</span>
-                    </a></li>
-                </ul>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-left" data-aos-delay="100">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Newsletter</h3>
-                <p class="text-gray-600 mb-4">Receba nossas notícias diretamente no seu e-mail</p>
-                <form class="space-y-3">
-                    <input type="text" placeholder="Seu nome" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
-                    <input type="email" placeholder="Seu e-mail" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
-                    <button type="submit" class="w-full bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">Assinar</button>
-                </form>
-            </div>
-        </aside>
     </div>
 
     <footer class="bg-gray-800 text-white py-12">
@@ -162,7 +114,7 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">AHBM Hospital</h3>
-                     <a 
+                    <a 
                         href="https://www.google.com/maps?q=Av.+José+Bonifácio,+382+-+Centro,+Maracaí+-+SP,+19840-000" 
                         target="_blank" 
                         rel="noopener noreferrer" 
@@ -172,7 +124,7 @@
                         <span>
                             Av. José Bonifácio, 382 - Centro<br>
                             Maracaí - SP<br>
-                            CEP: 19840-000
+                            CEP: 19840-037
                         </span>
                     </a>
                 </div>
@@ -184,7 +136,7 @@
                         </a>
                     </p>
                     <p class="text-gray-300 mb-2">
-                         <a href="mailto:provedoria@ahbm.com.br" class="flex items-center hover:underline">
+                        <a href="mailto:provedoria@ahbm.com.br" class="flex items-center hover:underline">
                             <i data-feather="mail" class="mr-2 h-4 w-4"></i> provedoria@ahbm.com.br
                         </a>
                     </p>
@@ -196,8 +148,6 @@
                     <h3 class="text-xl font-bold mb-4">Links Rápidos</h3>
                     <ul class="space-y-2">
                         <li><a href="/sobre" class="text-gray-300 hover:text-white">Sobre Nós</a></li>
-                        <li><a href="/noticias" class="text-gray-300 hover:text-white">Notícias</a></li>
-                        <li><a href="/medicos" class="text-gray-300 hover:text-white">Médicos</a></li>
                         <li><a href="/servicos" class="text-gray-300 hover:text-white">Serviços</a></li>
                         <li><a href="/transparencia" class="text-gray-300 hover:text-white">Portal da Transparência</a></li>
                         <li><a href="/contato" class="text-gray-300 hover:text-white">Contato</a></li>
@@ -213,10 +163,13 @@
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p>© <?php echo date("Y"); ?> AHBM Hospital de Maracaí. Todos os direitos reservados.</p>
+                <p class="text-sm mt-2">Desenvolvido por <a href="https://www.linkedin.com/in/pedrosanches38/" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white hover:underline">Pedro Sanches</a></p>
             </div>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script>
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
@@ -289,7 +242,6 @@
                 newsGrid.appendChild(newsCard);
             });
 
-            // Initialize AOS and Feather Icons
             AOS.init({
                 duration: 800,
                 easing: 'ease-in-out',

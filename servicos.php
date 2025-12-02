@@ -65,7 +65,7 @@ function renderServiceCard($section, $index, $isFirstList) {
     
     $reverseClass = $section['reverse'] ? 'reverse' : '';
     
-    $loadingAttr = ($isFirstList && $index === 0) ? 'eager' : 'lazy';
+    $loadingAttr = 'eager';
     $priorityAttr = ($isFirstList && $index === 0) ? 'fetchpriority="high"' : '';
 
     return "
@@ -103,7 +103,7 @@ function renderServiceCard($section, $index, $isFirstList) {
     <link href="./dist/style.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <link rel="preload" as="image" href="public/servicos/emergencia.webp">
+    <link rel="preload" as="image" href="/public/servicos/emergencia.webp">
 
     <style>
         html, body {
@@ -144,6 +144,7 @@ function renderServiceCard($section, $index, $isFirstList) {
             width: 100%;
             height: 200px;
             position: relative;
+            background-color: #f3f4f6;
         }
 
         @media (min-width: 640px) {
