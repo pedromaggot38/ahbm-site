@@ -1,3 +1,97 @@
+<?php
+
+$medicalConsultations = [
+    [
+        "title" => "Consulta com Ortopedista",
+        "description" => "Temos especialista para avaliar e tratar apenas casos de traumas e fraturas.",
+        "image" => "/servicos/ortopedista.webp",
+        "reverse" => true,
+    ],
+    [
+        "title" => "Consulta com Cirurgião Geral",
+        "description" => "Nossos cirurgiões gerais estão à disposição para consultas e procedimentos cirúrgicos diversos. Desde pequenas intervenções até cirurgias mais complexas, oferecemos um atendimento abrangente e humanizado.",
+        "image" => "/servicos/cirurgiao_geral.webp",
+        "reverse" => false,
+    ],
+    [
+        "title" => "Urgência e Emergência",
+        "description" => "Nosso setor de Urgência e Emergência está preparado para atender prontamente a todas as situações críticas. Contamos com uma equipe de profissionais altamente qualificados e equipamentos modernos para garantir um atendimento rápido e eficaz.",
+        "image" => "/servicos/emergencia.webp",
+        "reverse" => true,
+    ],
+    [
+        "title" => "Consulta com Anestesista",
+        "description" => "Antes de qualquer procedimento cirúrgico, nossos anestesistas realizam consultas detalhadas para garantir sua segurança e conforto. Avaliamos seu histórico médico e esclarecemos todas as suas dúvidas.",
+        "image" => "/servicos/anestesia.webp",
+        "reverse" => false,
+    ],
+];
+
+$medicalExams = [
+    [
+        "title" => "Exames Radiográficos (Diagnóstico por Imagem)",
+        "description" => "Realizamos radiografias que garantem diagnósticos precisos e rápidos. Atualmente não oferecemos serviços de Ultrassom (USG) e Tomografia.",
+        "image" => "/servicos/radiografia.webp",
+        "reverse" => false,
+    ],
+    [
+        "title" => "Eletrocardiograma (ECG)",
+        "description" => "Contamos com serviços de telemedicina que avaliam os eletrocardiogramas e fornecem laudos em tempo hábil para um diagnóstico ágil e eficiente.",
+        "image" => "/servicos/eletrocardiograma-ecg.webp",
+        "reverse" => true,
+    ],
+    [
+        "title" => "Exames Laboratoriais",
+        "description" => "Temos serviços terceirizados com equipamentos de ponta, que oferecem resultados rápidos e confiáveis para diversas análises clínicas.",
+        "image" => "/servicos/laboratoriais.webp",
+        "reverse" => false,
+    ],
+    [
+        "title" => "Exames Anatomopatológicos",
+        "description" => "Disponibilizamos serviços terceirizados com patologistas qualificados para a análise de amostras e tecidos, auxiliando em diagnósticos complexos.",
+        "image" => "/servicos/anatomopatologico.webp", 
+        "reverse" => true,
+    ],
+    [
+        "title" => "Tococardiografia",
+        "description" => "A tococardiografia é um exame importante para monitorar a saúde fetal durante a gravidez. Utilizamos equipamentos modernos para acompanhar a frequência cardíaca do bebê.",
+        "image" => "/servicos/tococardiografia.webp",
+        "reverse" => false,
+    ],
+];
+
+function renderServiceCard($section, $index, $isFirstList) {
+    $imagePath = "/public" . $section['image']; 
+    
+    $reverseClass = $section['reverse'] ? 'reverse' : '';
+    
+    $loadingAttr = ($isFirstList && $index === 0) ? 'eager' : 'lazy';
+    $priorityAttr = ($isFirstList && $index === 0) ? 'fetchpriority="high"' : '';
+
+    return "
+    <div class=\"service-card {$reverseClass}\" data-aos=\"fade-up\">
+        <div class=\"service-content-wrapper\">
+            <div class=\"max-w-md text-center sm:text-left\">
+                <h3 class=\"text-xl font-bold text-gray-900 md:text-2xl mb-2\">{$section['title']}</h3>
+                <p class=\"text-sm text-gray-500\">{$section['description']}</p>
+            </div>
+        </div>
+        <div class=\"service-image-wrapper\">
+            <img 
+                alt=\"{$section['title']}\" 
+                src=\"{$imagePath}\" 
+                loading=\"{$loadingAttr}\" 
+                {$priorityAttr}
+                width=\"800\" 
+                height=\"600\"
+                style=\"width: 100%; height: 100%; object-fit: cover; display: block;\"
+            />
+        </div>
+    </div>
+    ";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,9 +100,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços - AHB Maracaí</title>
     <link rel="icon" type="image/x-icon" href="/public/logo.svg">
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="./dist/style.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="preload" as="image" href="public/servicos/emergencia.webp">
+
     <style>
         html, body {
             width: 100%;
@@ -98,8 +194,6 @@
             <nav class="hidden md:flex space-x-8">
                 <a href="/" class="text-gray-600 hover:text-red-600">Início</a>
                 <a href="/sobre" class="text-gray-600 hover:text-red-600">Sobre</a>
-                <!-- <a href="/noticias" class="text-gray-600 hover:text-red-600">Notícias</a>
-                <a href="/medicos" class="text-gray-600 hover:text-red-600">Médicos</a> -->
                 <a href="/servicos" class="text-red-600 font-medium">Serviços</a>
                 <a href="/transparencia" class="text-gray-600 hover:text-red-600">Transparência</a>
                 <a href="/contato" class="text-gray-600 hover:text-red-600">Contato</a>
@@ -111,8 +205,6 @@
         <div class="md:hidden hidden bg-white py-2 px-4 shadow-md" id="mobile-menu">
             <a href="/" class="block py-2 text-gray-600">Início</a>
             <a href="/sobre" class="block py-2 text-gray-600">Sobre</a>
-            <!-- <a href="/noticias" class="block py-2 text-gray-600">Notícias</a>
-            <a href="/medicos" class="block py-2 text-gray-600">Médicos</a> -->
             <a href="/servicos" class="block py-2 text-red-600">Serviços</a>
             <a href="/transparencia" class="block py-2 text-gray-600">Transparência</a>
             <a href="/contato" class="block py-2 text-gray-600">Contato</a>
@@ -131,13 +223,25 @@
         <div class="container mx-auto px-4 space-y-16">
             <div>
                 <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center" data-aos="fade-up">Consultas Médicas</h2>
-                <div id="consultations-container" class="space-y-4">
+                <div class="space-y-4">
+                    <?php 
+                    foreach ($medicalConsultations as $index => $item) {
+                        echo renderServiceCard($item, $index, true);
+                    }
+                    ?>
                 </div>
             </div>
+
             <hr class="border-gray-200">
+
             <div>
                 <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center" data-aos="fade-up">Exames</h2>
-                <div id="exams-container" class="space-y-4">
+                <div class="space-y-4">
+                    <?php 
+                    foreach ($medicalExams as $index => $item) {
+                        echo renderServiceCard($item, $index, false);
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -182,8 +286,6 @@
                     <h3 class="text-xl font-bold mb-4">Links Rápidos</h3>
                     <ul class="space-y-2">
                         <li><a href="/sobre" class="text-gray-300 hover:text-white">Sobre Nós</a></li>
-                        <!-- <li><a href="/noticias" class="text-gray-300 hover:text-white">Notícias</a></li>
-                        <li><a href="/medicos" class="text-gray-300 hover:text-white">Médicos</a></li> -->
                         <li><a href="/servicos" class="text-gray-300 hover:text-white">Serviços</a></li>
                         <li><a href="/transparencia" class="text-gray-300 hover:text-white">Portal da Transparência</a></li>
                         <li><a href="/contato" class="text-gray-300 hover:text-white">Contato</a></li>
@@ -207,98 +309,6 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        const medicalConsultations = [
-            {
-                title: "Urgência e Emergência",
-                description: "Nosso setor de Urgência e Emergência está preparado para atender prontamente a todas as situações críticas. Contamos com uma equipe de profissionais altamente qualificados e equipamentos modernos para garantir um atendimento rápido e eficaz.",
-                image: "/servicos/emergencia.jpg",
-                reverse: false,
-            },
-            {
-                title: "Consulta com Ortopedista",
-                description: "Temos especialista para avaliar e tratar apenas casos de traumas e fraturas.",
-                image: "/servicos/ortopedista.jpg",
-                reverse: true,
-            },
-            {
-                title: "Consulta com Cirurgião Geral",
-                description: "Nossos cirurgiões gerais estão à disposição para consultas e procedimentos cirúrgicos diversos. Desde pequenas intervenções até cirurgias mais complexas, oferecemos um atendimento abrangente e humanizado.",
-                image: "/servicos/cirurgiao_geral.jpg",
-                reverse: false,
-            },
-            {
-                title: "Consulta com Anestesista",
-                description: "Antes de qualquer procedimento cirúrgico, nossos anestesistas realizam consultas detalhadas para garantir sua segurança e conforto. Avaliamos seu histórico médico e esclarecemos todas as suas dúvidas.",
-                image: "/servicos/anestesia.jpg",
-                reverse: true,
-            },
-        ];
-
-        const medicalExams = [
-            {
-                title: "Exames Radiográficos (Diagnóstico por Imagem)",
-                description: "Realizamos radiografias que garantem diagnósticos precisos e rápidos. Atualmente não oferecemos serviços de Ultrassom (USG) e Tomografia.",
-                image: "/servicos/radiografia.jpg",
-                reverse: false,
-            },
-            {
-                title: "Eletrocardiograma (ECG)",
-                description: "Contamos com serviços de telemedicina que avaliam os eletrocardiogramas e fornecem laudos em tempo hábil para um diagnóstico ágil e eficiente.",
-                image: "/servicos/eletrocardiograma-ecg.jpg",
-                reverse: true,
-            },
-            {
-                title: "Exames Laboratoriais",
-                description: "Temos serviços terceirizados com equipamentos de ponta, que oferecem resultados rápidos e confiáveis para diversas análises clínicas.",
-                image: "/servicos/laboratoriais.jpg",
-                reverse: false,
-            },
-            {
-                title: "Exames Anatomopatológicos",
-                description: "Disponibilizamos serviços terceirizados com patologistas qualificados para a análise de amostras e tecidos, auxiliando em diagnósticos complexos.",
-                image: "/servicos/anatomopatologico.png",
-                reverse: true,
-            },
-            {
-                title: "Tococardiografia",
-                description: "A tococardiografia é um exame importante para monitorar a saúde fetal durante a gravidez. Utilizamos equipamentos modernos para acompanhar a frequência cardíaca do bebê.",
-                image: "/servicos/tococardiografia.jpg",
-                reverse: false,
-            },
-        ];
-
-        function renderServices() {
-            const consultationsContainer = document.getElementById('consultations-container');
-            const examsContainer = document.getElementById('exams-container');
-            
-            const createSectionHTML = (section) => {
-                const imagePath = `public${section.image}`; 
-                
-                const reverseClass = section.reverse ? 'reverse' : '';
-                return `
-                <div class="service-card ${reverseClass}" data-aos="fade-up">
-                    <div class="service-content-wrapper">
-                        <div class="max-w-md text-center sm:text-left">
-                            <h3 class="text-xl font-bold text-gray-900 md:text-2xl mb-2">${section.title}</h3>
-                            <p class="text-sm text-gray-500">${section.description}</p>
-                        </div>
-                    </div>
-                    <div class="service-image-wrapper">
-                        <img alt="${section.title}" src="${imagePath}" loading="lazy" />
-                    </div>
-                </div>
-                `;
-            };
-            
-            if (consultationsContainer) {
-                consultationsContainer.innerHTML = medicalConsultations.map(createSectionHTML).join('');
-            }
-            if (examsContainer) {
-                examsContainer.innerHTML = medicalExams.map(createSectionHTML).join('');
-            }
-        }
-
-        // --- INICIALIZAÇÃO DA PÁGINA ---
         document.addEventListener('DOMContentLoaded', function () {
             feather.replace();
 
@@ -308,8 +318,6 @@
                     document.getElementById('mobile-menu').classList.toggle('hidden');
                 });
             }
-
-            renderServices();
 
             AOS.init({
                 duration: 800,

@@ -16,7 +16,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./public/foto-hospital-maracai.png');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./public/foto-hospital-maracai.webp');
             background-size: cover;
             background-position: center;
         }

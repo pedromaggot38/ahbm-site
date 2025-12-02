@@ -70,6 +70,7 @@
             </p>
         </div>
 
+        <!-- Documentos Institucionais -->
         <section class="mb-16">
             <?php
             $diretorio_institucional = 'public/documentos-institucionais/';
@@ -79,7 +80,7 @@
                     'titulo' => 'Ata Registrada Diretoria',
                     'descricao' => 'Documento oficial da ata de registro da diretoria da associação.',
                     'icone' => 'award',
-                    'cor' => 'green'
+                    'cor' => 'yellow'
                 ],
                 'Estatuto_atualizado_registrado.pdf' => [
                     'titulo' => 'Estatuto Social',
@@ -87,7 +88,6 @@
                     'icone' => 'file-text',
                     'cor' => 'red'
                 ],
-                // Adicione outros documentos aqui se necessário, com o nome do arquivo => [configurações]
             ];
             ?>
             <h3 class="text-2xl font-bold text-gray-800 mb-6">Documentos Institucionais</h3>
@@ -120,7 +120,118 @@
                 <p class="text-center text-gray-600 mt-6">Nenhum documento institucional encontrado.</p>
             <?php endif; ?>
         </section>
+        
+        <!-- Convênios -->
+        <section class="mb-16">
+            <?php
+            $diretorio_convenios = 'public/convenios/';
+            
+            $arquivos_convenios = glob($diretorio_convenios . '*.pdf');
 
+            $convenios_config = [
+                'plano-trabalho-termo-convenio-sms-01-2025.pdf' => [ 
+                    'titulo' => 'Convênio SMS Nº 01/2025',
+                    'descricao' => 'Publicação oficial do Plano de Trabalho e Termo de Convênio - Processo SMS Nº 01/2025.',
+                    'icone' => 'briefcase',
+                    'cor' => 'purple'
+                ],
+            ];
+            ?>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Convênios e Parcerias</h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <?php
+                foreach ($convenios_config as $nome_arquivo => $config):
+                    $caminho_arquivo = $diretorio_convenios . $nome_arquivo;
+                    
+                    if (file_exists($caminho_arquivo)):
+                ?>
+                        <div class="document-card bg-white p-6 rounded-lg shadow-md transition-shadow duration-300" data-aos="fade-up">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-<?php echo $config['cor']; ?>-100 p-3 rounded-full mr-4">
+                                    <i data-feather="<?php echo $config['icone']; ?>" class="text-<?php echo $config['cor']; ?>-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold"><?php echo $config['titulo']; ?></h4>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-600 mb-4"><?php echo $config['descricao']; ?></p>
+                            
+                            <a href="<?php echo $caminho_arquivo; ?>" target="_blank" class="text-red-600 font-medium hover:underline flex items-center">
+                                <i data-feather="download" class="mr-2 w-4 h-4"></i> Baixar PDF
+                            </a>
+                        </div>
+                <?php
+                    endif;
+                endforeach;
+                ?>
+            </div>
+
+            <?php
+            $tem_arquivos_visiveis = false;
+            foreach ($convenios_config as $nome => $conf) {
+                if (file_exists($diretorio_convenios . $nome)) {
+                    $tem_arquivos_visiveis = true;
+                    break;
+                }
+            }
+            if (!$tem_arquivos_visiveis): 
+            ?>
+                <p class="text-center text-gray-600 mt-6">Nenhum convênio listado no momento.</p>
+            <?php endif; ?>
+        </section>
+
+        <!-- Emendas Impositivas -->
+        <section class="mb-16">
+            <?php
+            $diretorio_impositivas = 'public/emendas-impositivas/';
+
+            $impositivas_config = [
+                'demonstrativo_emendas_impositivas_camara_municipal_2025.pdf' => [
+                    'titulo' => 'Demonstrativo Emendas Impositivas 2025',
+                    'descricao' => 'Demonstrativo de emendas impositivas da Câmara Municipal referentes ao ano de 2025.',
+                    'icone' => 'file-text',
+                    'cor' => 'teal'
+                ]
+            ];
+            ?>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Emendas Impositivas</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <?php
+                foreach ($impositivas_config as $nome_arquivo => $config):
+                    $caminho_arquivo = $diretorio_impositivas . $nome_arquivo;
+                    
+                    if (file_exists($caminho_arquivo)):
+                ?>
+                        <div class="document-card bg-white p-6 rounded-lg shadow-md transition-shadow duration-300" data-aos="fade-up">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-<?php echo $config['cor']; ?>-100 p-3 rounded-full mr-4">
+                                    <i data-feather="<?php echo $config['icone']; ?>" class="text-<?php echo $config['cor']; ?>-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold"><?php echo $config['titulo']; ?></h4>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4"><?php echo $config['descricao']; ?></p>
+                            <a href="<?php echo $caminho_arquivo; ?>" target="_blank" class="text-red-600 font-medium hover:underline flex items-center">
+                                <i data-feather="download" class="mr-2 w-4 h-4"></i> Baixar PDF
+                            </a>
+                        </div>
+                <?php
+                    endif;
+                endforeach;
+                ?>
+            </div>
+            
+            <?php 
+            if (!file_exists($diretorio_impositivas . 'demonstrativo_emendas_impositivas_camara_municipal_2025.pdf')): 
+            ?>
+                <p class="text-center text-gray-600 mt-6">Nenhum documento de emenda impositiva disponível no momento.</p>
+            <?php endif; ?>
+        </section>
+
+        <!-- Emendas -->
         <section class="mb-16">
             <?php
             $diretorio_emendas = 'public/emendas/';
@@ -181,6 +292,7 @@
             <?php endif; ?>
         </section>
 
+        <!-- Prestações de Contas -->
         <section id="prestacoes-de-contas" class="mt-16">
             <?php
             // Define o diretório base para as prestações de contas

@@ -1346,6 +1346,32 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+/* --- PACOTE DE CORES EXTRAS (Manual) --- */
+
+/* Roxo (Purple) - Bom para convênios ou contratos */
+.bg-purple-100 { background-color: #f3e8ff; }
+.text-purple-600 { color: #9333ea; }
+
+/* Laranja (Orange) - Bom para alertas ou emendas especiais */
+.bg-orange-100 { background-color: #ffedd5; }
+.text-orange-600 { color: #ea580c; }
+
+/* Amarelo (Yellow) - Bom para avisos ou documentos pendentes */
+.bg-yellow-100 { background-color: #fef9c3; }
+.text-yellow-600 { color: #ca8a04; }
+
+/* Rosa (Pink) - Para destaque ou campanhas específicas (ex: Outubro Rosa) */
+.bg-pink-100 { background-color: #fce7f3; }
+.text-pink-600 { color: #db2777; }
+
+/* Índigo (Indigo) - Uma alternativa mais moderna ao azul padrão */
+.bg-indigo-100 { background-color: #e0e7ff; }
+.text-indigo-600 { color: #4f46e5; }
+
+/* Verde-Água (Teal) - Uma alternativa fresca ao verde padrão */
+.bg-teal-100 { background-color: #ccfbf1; }
+.text-teal-600 { color: #0d9488; }
+
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
