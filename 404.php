@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Não Encontrada - AHB Maracaí</title>
-    <link rel="icon" type="image/x-icon" href="/public/logo.svg">
+    <link rel="icon" href="/public/logo.svg" type="image/svg+xml">
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="./dist/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
