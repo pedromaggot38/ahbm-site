@@ -175,16 +175,61 @@
         </section>
     </div>
 
-    <footer class="bg-gray-800 text-white py-12 mt-12">
+    <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">AHBM Hospital</h3>
-                    <p class="text-gray-300 text-sm">Av. José Bonifácio, 382 - Centro<br>Maracaí - SP</p>
+                    <a 
+                        href="https://www.google.com/maps?q=Av.+José+Bonifácio,+382+-+Centro,+Maracaí+-+SP,+19840-000" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="text-gray-300 hover:underline flex items-start"
+                    >
+                        <i data-feather="map-pin" class="mr-2 mt-1 h-4 w-4"></i>
+                        <span>
+                            Av. José Bonifácio, 382 - Centro<br>
+                            Maracaí - SP<br>
+                            CEP: 19840-037
+                        </span>
+                    </a>
                 </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contato</h3>
+                    <p class="text-gray-300 mb-2">
+                        <a href="tel:+551833712797" class="flex items-center hover:underline">
+                            <i data-feather="phone" class="mr-2 h-4 w-4"></i> (18) 3371-2797
+                        </a>
+                    </p>
+                    <p class="text-gray-300 mb-2">
+                        <a href="mailto:provedoria@ahbm.com.br" class="flex items-center hover:underline">
+                            <i data-feather="mail" class="mr-2 h-4 w-4"></i> provedoria@ahbm.com.br
+                        </a>
+                    </p>
+                    <p class="text-gray-300 flex items-center">
+                        <i data-feather="clock" class="mr-2 h-4 w-4"></i> Emergência 24 horas
+                    </p>
                 </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/sobre" class="text-gray-300 hover:text-white">Sobre Nós</a></li>
+                        <li><a href="/servicos" class="text-gray-300 hover:text-white">Serviços</a></li>
+                        <li><a href="/transparencia" class="text-gray-300 hover:text-white">Portal da Transparência</a></li>
+                        <li><a href="/contato" class="text-gray-300 hover:text-white">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Redes Sociais</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/ahbm.maracai" target='_blank' class="text-gray-300 hover:text-white"><i data-feather="facebook"></i></a>
+                        <a href="https://www.instagram.com/ahbm.maracai/" target='_blank' class="text-gray-300 hover:text-white"><i data-feather="instagram"></i></a>
+                    </div>
+                </div>
+            </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p>© <?php echo date("Y"); ?> AHBM Hospital de Maracaí. Todos os direitos reservados.</p>
+                <p class="text-sm mt-2">Desenvolvido por <a href="https://www.linkedin.com/in/pedrosanches38/" target="_blank" rel="noopener noreferrer" class="text-gray-200 hover:text-white hover:underline">Pedro Sanches</a></p>
             </div>
         </div>
     </footer>
