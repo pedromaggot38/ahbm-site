@@ -1,27 +1,39 @@
-# --- opções ---
+# --- Configurações de Servidor ---
 Options -Indexes
 Options -MultiViews
 
 RewriteEngine On
 RewriteBase /
 
+# Página de erro personalizada
 ErrorDocument 404 /404.php
 
-# --- regras personalizadas primeiro ---
-# detalhe da notícia (slug)
-RewriteRule ^noticias/([^/]+)/?$ noticia.php?slug=$1 [L,QSA,NC]
+# --- Otimização de Performance (Essencial para 384MB) ---
 
-# lista de notícias
-RewriteRule ^noticias/?$ noticias.php [L,NC]
+# 1. Ativar compressão GZIP (Reduz o tamanho dos arquivos enviados)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
 
-# outras páginas
+# 2. Cache de Navegador (Evita recarregar imagens e CSS a cada clique)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+</IfModule>
+
+# --- Regras de Roteamento Limpas ---
+
+# Páginas institucionais
 RewriteRule ^sobre/?$ sobre.php [L]
-RewriteRule ^medicos/?$ medicos.php [L]
 RewriteRule ^servicos/?$ servicos.php [L]
 RewriteRule ^transparencia/?$ transparencia.php [L]
 RewriteRule ^contato/?$ contato.php [L]
 
-# --- só no final: se for arquivo/pasta real, não reescreve ---
+# Se for um arquivo ou pasta real, não aplica reescrita
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
